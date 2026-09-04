@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" width="1200" height="300" role="img" aria-label="Alexi Dermosesian, full-stack web developer">
+  <defs>
+    <!-- userSpaceOnUse, not the default objectBoundingBox: the rule below is a horizontal
+         line, so its bounding box has zero height and a bounding-box gradient is
+         degenerate there, which paints nothing at all. -->
+    <linearGradient id="accent" gradientUnits="userSpaceOnUse" x1="72" y1="96" x2="360" y2="96">
+      <stop offset="0%" stop-color="#0969DA"/>
+      <stop offset="50%" stop-color="#218BFF"/>
+      <stop offset="100%" stop-color="#1A7F37"/>
+    </linearGradient>
+    <linearGradient id="fade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="1"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#D8DEE4" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="300" fill="#FFFFFF"/>
+
+  <!-- Slowly drifting grid: two tiles offset so the loop is seamless -->
+  <g opacity="0.7">
+    <rect width="1280" height="300" fill="url(#grid)">
+      <animateTransform attributeName="transform" type="translate"
+        values="0 0; -40 -40" dur="6s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+  <rect x="820" width="380" height="300" fill="url(#fade)"/>
+
+  <!-- Accent rule that draws itself once, then holds -->
+  <line x1="72" y1="96" x2="360" y2="96" stroke="url(#accent)" stroke-width="3" stroke-linecap="round"
+        stroke-dasharray="288" stroke-dashoffset="288">
+    <animate attributeName="stroke-dashoffset" from="288" to="0" dur="1.1s"
+             begin="0.2s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
+  </line>
+
+  <text x="72" y="72" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="20" letter-spacing="6" fill="#0969DA">FULL-STACK WEB DEVELOPER</text>
+
+  <text x="72" y="164" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="54" font-weight="700" letter-spacing="1" fill="#1F2328">Alexi Dermosesian</text>
+
+  <!-- Three rotating lines. Each is visible for 3s of a 9s cycle. -->
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="22" fill="#656D76">
+    <text x="72" y="212" opacity="0">
+      React and TypeScript on the front
+      <animate attributeName="opacity" values="0;1;1;0;0;0;0" keyTimes="0;0.04;0.30;0.35;1;1;1"
+               dur="9s" begin="1.2s" repeatCount="indefinite"/>
+    </text>
+    <text x="72" y="212" opacity="0">
+      PHP, Laravel and Node behind it
+      <animate attributeName="opacity" values="0;0;1;1;0;0;0" keyTimes="0;0.33;0.37;0.63;0.68;1;1"
+               dur="9s" begin="1.2s" repeatCount="indefinite"/>
+    </text>
+    <text x="72" y="212" opacity="0">
+      WordPress platforms and REST APIs
+      <animate attributeName="opacity" values="0;0;0;0;1;1;0" keyTimes="0;0.63;0.66;0.66;0.70;0.96;1"
+               dur="9s" begin="1.2s" repeatCount="indefinite"/>
+    </text>
+  </g>
+
+  <!-- Blinking block caret -->
+  <rect x="72" y="234" width="11" height="3" fill="#1A7F37">
+    <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="1.06s" repeatCount="indefinite"/>
+  </rect>
+
+  <!-- Bar motif: eight columns rise from the baseline once, then drift up and down
+       around the height they landed on, forever. Two animations per attribute do this:
+       a one-shot rise that freezes, then a loop that starts and ends on the same value
+       it froze at, so the repeat is seamless and never drops back to the baseline.
+       Bars grow upward, so height and y always move together — a rect grows downward
+       from its y, and only shifting y in step keeps the foot of the bar on the axis. -->
+  <g transform="translate(880 60)">
+    <line x1="0" y1="180" x2="248" y2="180" stroke="#D8DEE4" stroke-width="2"/>
+    <g fill="#0969DA">
+      <rect x="4" y="180" width="18" height="0" rx="2">
+        <animate attributeName="height" values="0;58" keyTimes="0;1" dur="0.9s" begin="0.25s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
+        <animate attributeName="y" values="180;122" keyTimes="0;1" dur="0.9s" begin="0.25s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
+        <animate attributeName="height" values="58;46;58" keyTimes="0;0.5;1" dur="4.2s" begin="1.15s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+        <animate attributeName="y" values="122;134;122" keyTimes="0;0.5;1" dur="4.2s" begin="1.15s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+      </rect>
+      <rect x="34" y="180" width="18" height="0" rx="2" fill="#0F76DD">
+        <animate attributeName="height" values="0;96" keyTimes="0;1" dur="0.9s" begin="0.32s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
+        <animate attributeName="y" values="180;84" keyTimes="0;1" dur="0.9s" begin="0.32s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
+        <animate attributeName="height" values="96;82;96" keyTimes="0;0.5;1" dur="4.2s" begin="1.22s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+        <animate attributeName="y" values="84;98;84" keyTimes="0;0.5;1" dur="4.2s" begin="1.22s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+      </rect>
+      <rect x="64" y="180" width="18" height="0" rx="2" fill="#1583E1">
+        <animate attributeName="height" values="0;64" keyTimes="0;1" dur="0.9s" begin="0.39s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
+        <animate attributeName="y" values="180;116" keyTimes="0;1" dur="0.9s" begin="0.39s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
+        <animate attributeName="height" values="64;78;64" keyTimes="0;0.5;1" dur="4.2s" begin="1.29s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+        <animate attributeName="y" values="116;102;116" keyTimes="0;0.5;1" dur="4.2s" begin="1.29s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+      </rect>
+      <rect x="94" y="180" width="18" height="0" rx="2" fill="#218BFF">
+        <animate attributeName="height" values="0;132" keyTimes="0;1" dur="0.9s" begin="0.46s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
+        <animate attributeName="y" values="180;48" keyTimes="0;1" dur="0.9s" begin="0.46s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
+        <animate attributeName="height" values="132;118;132" keyTimes="0;0.5;1" dur="4.2s" begin="1.36s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+        <animate attributeName="y" values="48;62;48" keyTimes="0;0.5;1" dur="4.2s" begin="1.36s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+      </rect>
+      <rect x="124" y="180" width="18" height="0" rx="2" fill="#218BFF">
+        <animate attributeName="height" values="0;104" keyTimes="0;1" dur="0.9s" begin="0.53s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
+        <animate attributeName="y" values="180;76" keyTimes="0;1" dur="0.9s" begin="0.53s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
+        <animate attributeName="height" values="104;120;104" keyTimes="0;0.5;1" dur="4.2s" begin="1.43s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+        <animate attributeName="y" values="76;60;76" keyTimes="0;0.5;1" dur="4.2s" begin="1.43s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+      </rect>
+      <rect x="154" y="180" width="18" height="0" rx="2" fill="#1C8139">
+        <animate attributeName="height" values="0;150" keyTimes="0;1" dur="0.9s" begin="0.6s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
+        <animate attributeName="y" values="180;30" keyTimes="0;1" dur="0.9s" begin="0.6s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
+        <animate attributeName="height" values="150;134;150" keyTimes="0;0.5;1" dur="4.2s" begin="1.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+        <animate attributeName="y" values="30;46;30" keyTimes="0;0.5;1" dur="4.2s" begin="1.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+      </rect>
+      <rect x="184" y="180" width="18" height="0" rx="2" fill="#1A7F37">
+        <animate attributeName="height" values="0;118" keyTimes="0;1" dur="0.9s" begin="0.67s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
+        <animate attributeName="y" values="180;62" keyTimes="0;1" dur="0.9s" begin="0.67s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
+        <animate attributeName="height" values="118;140;118" keyTimes="0;0.5;1" dur="4.2s" begin="1.57s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+        <animate attributeName="y" values="62;40;62" keyTimes="0;0.5;1" dur="4.2s" begin="1.57s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+      </rect>
+      <rect x="214" y="180" width="18" height="0" rx="2" fill="#1A7F37">
+        <animate attributeName="height" values="0;168" keyTimes="0;1" dur="0.9s" begin="0.74s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
+        <animate attributeName="y" values="180;12" keyTimes="0;1" dur="0.9s" begin="0.74s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
+        <animate attributeName="height" values="168;152;168" keyTimes="0;0.5;1" dur="4.2s" begin="1.64s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+        <animate attributeName="y" values="12;28;12" keyTimes="0;0.5;1" dur="4.2s" begin="1.64s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+      </rect>
+    </g>
+  </g>
+</svg>
