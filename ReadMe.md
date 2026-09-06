@@ -41,28 +41,26 @@ flowchart LR
 Track what you've watched, what you're part-way through and what's next, over TMDb's
 catalogue. React 19 on the front, Express, Prisma and PostgreSQL behind it.
 
-The interesting problem is concurrency. Marking an episode watched has to update episode
-state and recount the season it belongs to, and two open tabs can race that. Both writes run
-inside a transaction holding a Postgres advisory lock keyed on the title, so the second one
-waits and then recounts from committed state rather than from what it read a moment earlier.
+A title sits in exactly one of three states, and holding that invariant against concurrent
+tabs is the part I'd defend in a review. Every transition runs inside one transaction that
+first takes `pg_advisory_xact_lock` keyed on `(user, title)`, so a second tab acting on the
+same title waits and then re-reads committed state, while two different users never contend
+with each other at all.
 
 ```mermaid
-sequenceDiagram
-  autonumber
-  participant T1 as Tab 1
-  participant T2 as Tab 2
-  participant API as Express
-  participant PG as PostgreSQL
-  T1->>API: mark episode watched
-  T2->>API: mark same episode watched
-  API->>PG: BEGIN · advisory lock on title
-  PG-->>API: lock granted to tab 1
-  API->>PG: recount season · COMMIT
-  Note over T2,PG: tab 2 blocks on the lock, then<br/>recounts from committed state
-  API-->>T2: one consistent watch state
+stateDiagram-v2
+  direction LR
+  [*] --> Watchlist: add
+  Watchlist --> Watching: start · records progress
+  Watchlist --> Watched: stamp
+  Watching --> Watched: stamp · score, note, date
+  Watched --> Watchlist: remove stamp
+  Watched --> Watched: revise stamp
 ```
 
-TMDb responses are cached too, so the archive still renders when TMDb is down.
+Stamping a title clears its progress pointer in the same transaction, and stamping again
+revises the one entry rather than appending a second. TMDb responses are cached, and an
+expired row still serves if TMDb refuses — a stale poster beats a blank one.
 
 `React 19` · `Express 5` · `Prisma` · `PostgreSQL` · `JWT` · `Vitest`
 
