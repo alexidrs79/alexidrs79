@@ -68,9 +68,10 @@ expired row still serves if TMDb refuses — a stale poster beats a blank one.
 
 ## Also
 
-**[wp-themes](https://github.com/alexidrs79/wp-themes)** — three ACF-driven WordPress themes
-built from Figma for client products. One field group and one template part per section, so
-the content stays editable in wp-admin rather than hard-coded into the template.
+**[wp-themes](https://github.com/alexidrs79/wp-themes)** — five client WordPress themes.
+Snap, Lucibook and Devotel are standalone ACF landing themes built from Figma. Superb Painting
+and Premier Edge Painting are Kadence children for Melbourne painters — suburb and service
+CPTs, quote forms, and the front-end markup in the child rather than in the parent.
 
 **[portfolio-site](https://github.com/alexidrs79/portfolio-site)** — my own site, React and
 Vite, built and deployed to Pages by Actions on every push to `main`. Live at
