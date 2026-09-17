@@ -5,7 +5,7 @@
 
 I build full-stack web applications: React and TypeScript on the front, PHP, Laravel and
 Node behind them. Currently at **Devotel**, building React interfaces and custom WordPress
-platforms and wiring both up to REST APIs.
+platforms and wiring both up to REST APIs, and also stand alone projects with React, Laravel and Node.js.
 
 I like building things, breaking them, fixing them, and occasionally wondering why I wrote
 the code that way in the first place.
